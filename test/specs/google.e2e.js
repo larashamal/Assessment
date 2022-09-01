@@ -18,5 +18,27 @@ describe("Google Search", function () {
     await udemyLink.click();
     const udemyTitle = await browser.getTitle();
     await expect(udemyTitle).toContain("Udemy");
+
+    // Pauses to allow for search to load.
+    const udemySearch = await $("input[name='q']");
+    await browser.pause(1000);
+    await udemySearch.click();
+    await browser.pause(1000);
+    await udemySearch.keys("BDD with Cucumber");
+    await udemySearch.keys("Enter");
+
+    // const udemySearchBtn = await $("button[type='submit']");
+    // await udemySearchBtn.click();
+    await browser.pause(1000);
+    // redo: change dropdown selector
+    const dropDown = await $("[name='sort']");
+    await dropDown.selectByIndex(2);
+
+    const highestRatedLink = await $("=bdd with cucumber");
+    await highestRatedLink.click();
+    const highestRatedTitle = await browser.getTitle();
+    await expect(highestRatedTitle).toBe(
+      "Learn to Create BDD Framework using Cucumber and Java"
+    );
   });
 });
