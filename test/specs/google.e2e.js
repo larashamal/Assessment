@@ -4,6 +4,7 @@ describe("verifies Google website and rejects cookies", function () {
   // Step 1: Go to Google site
   it("loads google search", async function () {
     await GooglePage.open();
+
     // Assert it is Google
     const title = await browser.getTitle();
     await expect(title).toEqual("Google");
@@ -14,21 +15,21 @@ describe("verifies Google website and rejects cookies", function () {
   });
 
   it("searches 'Testing Automation Learning' in the input", async function () {
-
     // Step 2: Searching for the keyword
     const inputBox = await $("input");
     await inputBox.click();
     await inputBox.setValue("Testing Automation Learning");
+
     // Clicking 'search' button
     const googleBtn = $("aria/Google Search");
     await googleBtn.click();
   });
 
   it("clicks the Udemy link and verifies its the correct website", async function () {
-
     // Step 3: Selecting Udemy link
     const udemyLink = await $("h3*=Udemy");
     await udemyLink.click();
+
     // Verifying Udemy has opened
     const udemyTitle = await browser.getTitle();
     await expect(udemyTitle).toContain("Udemy");
@@ -36,13 +37,10 @@ describe("verifies Google website and rejects cookies", function () {
 
   // Issues with Captcha began to arise at this point
   it("searches BDD with Cucumber within Udemy", async function () {
-
     // Added pauses to allow for search to load.
     // Step 5: Searching 'BDD with Cucumber' within Udemy
     const udemySearch = await $("input[name='q']");
     await udemySearch.click();
-
-    await browser.pause(1000);
 
     await udemySearch.keys("BDD with Cucumber");
     await udemySearch.keys("Enter");
@@ -50,12 +48,11 @@ describe("verifies Google website and rejects cookies", function () {
     await browser.pause(2000);
   });
 
-
   it("selects the correct filter", async function () {
-
     // Step 6: Click on highest rated course
     // Selecting the correct filter
     const dropDown = await $("input[name='sort']");
+    await dropDown.click();
     await dropDown.makeChoice("Highest Rated");
 
     // Asserting the filter has shown the correct results
@@ -63,8 +60,7 @@ describe("verifies Google website and rejects cookies", function () {
     await expect(browser.url).toContain("sort=highest-rated");
   });
 
-  it("searches BDD with Cucumber within Udemy", async function () {
-
+  it("clicks the correct highest rated course", async function () {
     // Select the correct highest rated course
     const highestRatedLink = await $("=bdd with cucumber");
     await highestRatedLink.click();
@@ -72,5 +68,7 @@ describe("verifies Google website and rejects cookies", function () {
     // Asserting the correct link was chosen
     const highestRatedTitle = await browser.getTitle();
     await expect(highestRatedTitle).toBe(
-      "Learn to Create BDD Framework using Cucumber and Java");
+      "Learn to Create BDD Framework using Cucumber and Java"
+    );
+  });
 });
