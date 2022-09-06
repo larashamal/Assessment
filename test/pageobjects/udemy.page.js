@@ -14,7 +14,7 @@ class UdemyPage extends GooglePage {
   }
 
   get highestRatedLink() {
-    return $("h3*=bdd with cucumber");
+    return $("h3 a=bdd with cucumber");
   }
 }
 
