@@ -16,10 +16,6 @@ class UdemyPage extends GooglePage {
   get highestRatedLink() {
     return $("h3*=bdd with cucumber");
   }
-
-  get highestRatedTitle() {
-    browser.getTitle();
-  }
 }
 
 export default new UdemyPage();

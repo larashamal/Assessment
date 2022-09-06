@@ -5,10 +5,6 @@ class GooglePage extends Page {
     browser.url("https://www.google.com");
   }
 
-  get googleTitle() {
-    browser.getTitle();
-  }
-
   get rejectCookiesBtn() {
     return $("div=Reject all");
   }

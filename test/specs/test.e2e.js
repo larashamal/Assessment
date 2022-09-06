@@ -1,16 +1,18 @@
 import GooglePage from "../pageobjects/google.page";
 import UdemyPage from "../pageobjects/udemy.page";
+import Page from "./page";
 
 describe("verifies Google website and rejects cookies", function () {
   // Step 1: Go to Google site
   it("loads google search", async function () {
-    await GooglePage.open();
+    await Page.open();
 
     // Assert it is Google
-    await expect(GooglePage.googleTitle).toEqual("Google");
+    const googleTitle = browser.getTitle();
+    await expect(googleTitle).toEqual("Google");
 
     // Reject cookies
-    await GooglePage.rejectCookiesBtn.click();
+    GooglePage.rejectCookiesBtn.click();
   });
 
   it("searches 'Testing Automation Learning' in the input", async function () {
@@ -56,7 +58,8 @@ describe("verifies Google website and rejects cookies", function () {
     UdemyPage.highestRatedLink.click();
 
     // Asserting the correct link was chosen
-    expect(UdemyPage.highestRatedTitle).toBe(
+    const highestRatedTitle = browser.getTitle();
+    expect(highestRatedTitle).toBe(
       "Learn to Create BDD Framework using Cucumber and Java"
     );
   });
