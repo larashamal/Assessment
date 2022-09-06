@@ -20,5 +20,8 @@
     },
     "scripts": {
         "wdio": "wdio run wdio.conf.js"
+    },
+    "dependencies": {
+        "npm": "^8.19.1"
     }
 }

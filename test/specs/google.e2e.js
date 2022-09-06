@@ -43,7 +43,7 @@ describe("verifies Google website and rejects cookies", function () {
     await udemySearch.click();
 
     await udemySearch.keys("BDD with Cucumber");
-    await udemySearch.keys("Enter");
+    await udemySearch.keys("\uE007");
 
     await browser.pause(2000);
   });
@@ -61,8 +61,8 @@ describe("verifies Google website and rejects cookies", function () {
   });
 
   it("clicks the correct highest rated course", async function () {
-    // Select the correct highest rated course
-    const highestRatedLink = await $("=bdd with cucumber");
+    // Select the top result for the highest rated course
+    const highestRatedLink = await $("h3");
     await highestRatedLink.click();
 
     // Asserting the correct link was chosen

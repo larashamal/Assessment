@@ -15,7 +15,7 @@
 
 ## Method
 
-- I used Webdriver IO to test this scenario. Webdriver IO is easier to read and is more concise.
+- I used Webdriver IO to test this scenario. Webdriver IO allows for better abstractions and writing more declarative tests.
 
 - I made sure to take extra care when naming variables and spacing the automation script for this same reasoning. Creating an easily readable test saves a lot of time and trouble for the team.
 
