@@ -1,5 +1,4 @@
 import GooglePage from "./google.page";
-import Page from "./page";
 
 class UdemyPage extends GooglePage {
   get udemySearch() {
@@ -10,6 +9,14 @@ class UdemyPage extends GooglePage {
 
   get dropDown() {
     return $("input[name='sort']");
+  }
+
+  get highestRatedLink() {
+    return $("h3*=bdd with cucumber");
+  }
+
+  get highestRatedTitle() {
+    browser.getTitle();
   }
 }
 

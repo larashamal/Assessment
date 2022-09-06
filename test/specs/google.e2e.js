@@ -55,12 +55,10 @@ describe("verifies Google website and rejects cookies", function () {
 
   it("clicks the correct highest rated course", async function () {
     // Select the top result for the highest rated course
-    const highestRatedLink = await $("h3*=bdd with cucumber");
-    await highestRatedLink.click();
+    UdemyPage.highestRatedLink.click();
 
     // Asserting the correct link was chosen
-    const highestRatedTitle = await browser.getTitle();
-    await expect(highestRatedTitle).toBe(
+    await expect(UdemyPage.highestRatedTitle).toBe(
       "Learn to Create BDD Framework using Cucumber and Java"
     );
   });
