@@ -1,18 +1,17 @@
 import GooglePage from "../pageobjects/google.page";
 import UdemyPage from "../pageobjects/udemy.page";
-import Page from "./page";
 
 describe("verifies Google website and rejects cookies", function () {
   // Step 1: Go to Google site
   it("loads google search", async function () {
-    await Page.open();
+    await GooglePage.open();
 
     // Assert it is Google
     const googleTitle = browser.getTitle();
     await expect(googleTitle).toEqual("Google");
 
-    // Reject cookies
-    GooglePage.rejectCookiesBtn.click();
+    // Accept cookies
+    GooglePage.acceptCookiesBtn.click();
   });
 
   it("searches 'Testing Automation Learning' in the input", async function () {
@@ -21,7 +20,9 @@ describe("verifies Google website and rejects cookies", function () {
     GooglePage.inputBox.setValue("Testing Automation Learning");
     GooglePage.searchBtn.click();
 
-    expect(GooglePage.inputBox).toHaveValue("Testing Automation Learning");
+    await expect(GooglePage.inputBox).toHaveValue(
+      "Testing Automation Learning"
+    );
   });
 
   it("clicks the Udemy link and verifies its the correct website", async function () {
@@ -29,7 +30,7 @@ describe("verifies Google website and rejects cookies", function () {
     GooglePage.udemyLink.click();
 
     // Verifying Udemy has opened
-    expect(UdemyPage.udemyTitle).toContain("Udemy");
+    await expect(UdemyPage.udemyTitle).toContain("Udemy");
   });
 
   // Issues with Captcha began to arise at this point
@@ -49,8 +50,8 @@ describe("verifies Google website and rejects cookies", function () {
     UdemyPage.dropDown.makeChoice("Highest Rated");
 
     // Asserting the filter has shown the correct results
-    expect(UdemyPage.dropDown).toHaveValueContaining("Highest Rated");
-    expect(browser.url).toContain("sort=highest-rated");
+    await expect(UdemyPage.dropDown).toHaveValueContaining("Highest Rated");
+    await expect(browser.url).toContain("sort=highest-rated");
   });
 
   it("clicks the correct highest rated course", async function () {
@@ -59,7 +60,7 @@ describe("verifies Google website and rejects cookies", function () {
 
     // Asserting the correct link was chosen
     const highestRatedTitle = browser.getTitle();
-    expect(highestRatedTitle).toBe(
+    await expect(highestRatedTitle).toBe(
       "Learn to Create BDD Framework using Cucumber and Java"
     );
   });

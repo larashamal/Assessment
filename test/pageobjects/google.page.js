@@ -5,8 +5,8 @@ class GooglePage extends Page {
     browser.url("https://www.google.com");
   }
 
-  get rejectCookiesBtn() {
-    return $("div=Reject all");
+  get acceptCookiesBtn() {
+    return $("#L2AGLb");
   }
 
   get inputBox() {
