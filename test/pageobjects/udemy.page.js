@@ -5,7 +5,9 @@ class UdemyPage extends GooglePage {
     return $("input[name='q']");
   }
 
-  get udemySearchLink() {}
+  get udemyTitle() {
+    browser.getTitle();
+  }
 
   get dropDown() {
     return $("input[name='sort']");

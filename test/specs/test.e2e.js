@@ -7,8 +7,7 @@ describe("verifies Google website and rejects cookies", function () {
     await GooglePage.open();
 
     // Assert it is Google
-    const title = await browser.getTitle();
-    await expect(title).toEqual("Google");
+    await expect(GooglePage.googleTitle).toEqual("Google");
 
     // Reject cookies
     await GooglePage.rejectCookiesBtn.click();
@@ -28,8 +27,7 @@ describe("verifies Google website and rejects cookies", function () {
     GooglePage.udemyLink.click();
 
     // Verifying Udemy has opened
-    const udemyTitle = await browser.getTitle();
-    await expect(udemyTitle).toContain("Udemy");
+    expect(UdemyPage.udemyTitle).toContain("Udemy");
   });
 
   // Issues with Captcha began to arise at this point
@@ -49,8 +47,8 @@ describe("verifies Google website and rejects cookies", function () {
     UdemyPage.dropDown.makeChoice("Highest Rated");
 
     // Asserting the filter has shown the correct results
-    await expect(UdemyPage.dropDown).toHaveValueContaining("Highest Rated");
-    await expect(browser.url).toContain("sort=highest-rated");
+    expect(UdemyPage.dropDown).toHaveValueContaining("Highest Rated");
+    expect(browser.url).toContain("sort=highest-rated");
   });
 
   it("clicks the correct highest rated course", async function () {
@@ -58,7 +56,7 @@ describe("verifies Google website and rejects cookies", function () {
     UdemyPage.highestRatedLink.click();
 
     // Asserting the correct link was chosen
-    await expect(UdemyPage.highestRatedTitle).toBe(
+    expect(UdemyPage.highestRatedTitle).toBe(
       "Learn to Create BDD Framework using Cucumber and Java"
     );
   });
