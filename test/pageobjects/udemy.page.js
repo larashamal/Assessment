@@ -1,4 +1,4 @@
-import GooglePage from "./google.page";
+import GooglePage from "../pageobjects/google.page";
 
 class UdemyPage extends GooglePage {
   get udemySearch() {

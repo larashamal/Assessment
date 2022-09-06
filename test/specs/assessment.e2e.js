@@ -1,10 +1,11 @@
 import GooglePage from "../pageobjects/google.page";
+import Page from "../pageobjects/page";
 import UdemyPage from "../pageobjects/udemy.page";
 
 describe("verifies Google website and rejects cookies", function () {
   // Step 1: Go to Google site
   it("loads google search", async function () {
-    await GooglePage.open();
+    await Page.open();
 
     // Assert it is Google
     const googleTitle = browser.getTitle();
@@ -16,7 +17,6 @@ describe("verifies Google website and rejects cookies", function () {
 
   it("searches 'Testing Automation Learning' in the input", async function () {
     // Step 2: Searching for the keyword
-
     GooglePage.inputBox.setValue("Testing Automation Learning");
     GooglePage.searchBtn.click();
 
